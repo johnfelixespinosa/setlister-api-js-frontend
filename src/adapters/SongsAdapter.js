@@ -5,9 +5,22 @@ class SongsAdapter {
   };
 
   getSongs() {
-    return fetch(this.baseUrl).then(res => res.json()
-    )
+    return fetch(this.baseUrl).then(res => res.json())
   };
+
+  createSong(value) {
+    const song = {
+      title: value
+    }
+      
+    return fetch(this.baseUrl, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({ song }),
+    }).then(res => res.json())
+  } 
 }
 
 // adapter = new SongsAdapter()

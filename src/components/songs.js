@@ -10,12 +10,17 @@ class Songs {
     this.songsContainer = document.getElementById('songs-container')
     this.newSongTitle = document.getElementById('new-song-title')
     this.songsForm = document.getElementById('new-song-form')
-    this.songsForm.addEventListener("submit", this.createSong.bind(this))
+    this.songsForm.addEventListener('submit', this.createSong.bind(this))
   };
 
   createSong(e) {
     e.preventDefault()
-    console.log(this.newSongTitle.value)
+    const value = this.newSongTitle.value
+
+    this.adapter.createSong(value).then(song => {
+      this.songs.push(new Song(song))
+      this.render() 
+    })
   }
 
   fetchAndLoadSongs() {
