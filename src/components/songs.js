@@ -8,12 +8,14 @@ class Songs {
 
   initBindingsEventListeners() {
     this.songsContainer = document.getElementById('songs-container')
+    this.newSongTitle = document.getElementById('new-song-title')
     this.songsForm = document.getElementById('new-song-form')
-    this.songsForm.addEventListener("submit", this.createSong)
+    this.songsForm.addEventListener("submit", this.createSong.bind(this))
   };
 
-  createSong() {
-    console.log('song is being created')
+  createSong(e) {
+    e.preventDefault()
+    console.log(this.newSongTitle.value)
   }
 
   fetchAndLoadSongs() {
