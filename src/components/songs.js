@@ -2,9 +2,19 @@ class Songs {
   constructor() {
     this.songs = []
     this.adapter = new SongsAdapter()
-    // this.bindEventListeners()
+    this.initBindingsEventListeners()
     this.fetchAndLoadSongs()
   };
+
+  initBindingsEventListeners() {
+    this.songsContainer = document.getElementById('songs-container')
+    this.songsForm = document.getElementById('new-song-form')
+    this.songsForm.addEventListener("submit", this.createSong)
+  };
+
+  createSong() {
+    console.log('song is being created')
+  }
 
   fetchAndLoadSongs() {
     this.adapter
@@ -17,8 +27,7 @@ class Songs {
       });
   };
 
-  render() {
-    const songsContainer = document.getElementById('songs-container')
-    songsContainer.innerHTML = "Made it here"
-  }
+  render() {      
+    this.songsContainer.innerHTML = this.songs.map(song => song.renderLi()).join('')
+  };
 }
