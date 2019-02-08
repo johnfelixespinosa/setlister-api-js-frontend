@@ -10,7 +10,7 @@ class Songs {
     this.adapter
       .getSongs()
       .then(songs => {
-        songs.forEach(song => this.songs.push(song))
+        songs.forEach(song => this.songs.push(new Song(song)))
       })
       .then(() => {
         this.render()
