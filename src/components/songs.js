@@ -7,10 +7,15 @@ class Songs {
   };
 
   fetchAndLoadSongs() {
-    this.adapter.getSongs().then(songs => {}).then(() => {
-      this.render()
-    })
-  }
+    this.adapter
+      .getSongs()
+      .then(songs => {
+        songs.forEach(song => this.songs.push(song))
+      })
+      .then(() => {
+        this.render()
+      });
+  };
 
   render() {
     const songsContainer = document.getElementById('songs-container')
