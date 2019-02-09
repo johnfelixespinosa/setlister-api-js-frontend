@@ -25,8 +25,12 @@ class Songs {
 
   updateNote(e) {
     const li = e.target
+    li.contentEditable = false
     li.classList.remove('editable')
-    console.log('updating', li)
+    const newValue = li.innerHTML
+    const id = li.dataset.id
+    // console.log(id)
+    this.adapter.updateSong(newValue, id)
   }
 
   createSong(e) {

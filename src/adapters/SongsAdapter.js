@@ -18,9 +18,23 @@ class SongsAdapter {
       headers: {
         'content-type': 'application/json',
       },
-      body: JSON.stringify({ song }),
+      body: JSON.stringify({ song })
     }).then(res => res.json())
-  } 
+  }
+  
+  updateSong(value, id) {
+    const song = {
+      title: value
+    }
+
+    return fetch(`${this.baseUrl}/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({ song })
+    }).then(res => res.json())
+  }
 }
 
 // adapter = new SongsAdapter()
